@@ -1677,38 +1677,3 @@ body.abierto #animacion-Descripcion {
     from { opacity: 1; }
     to { opacity: 0; }
 }
-
-
-/* Responsividad */
-@media (max-width: 991px) {
-    #main-wrapper {
-        width: 100% !important;
-        /* El 85vh asegura que el Header siempre sea visible arriba (15vh libres) */
-        height: 85vh !important; 
-        top: auto !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        transform: translateY(100%); /* Escondido abajo */
-        transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-        z-index: 1050; /* Por debajo del header si este tiene 1100 */
-        border-radius: 25px 25px 0 0;
-        border-top: 3px solid var(--color-principal);
-    }
-
-    /* El botón de cerrar en móvil debe ser más grande y estar arriba a la derecha del panel */
-    #btn-cerrar-wrapper {
-        position: sticky; /* Se queda arriba mientras haces scroll en el panel */
-        top: 15px;
-        right: 20px;
-        float: right;
-        font-size: 2rem;
-        z-index: 1060;
-        background: rgba(0,0,0,0.5);
-        border-radius: 50%;
-        width: 45px;
-        height: 45px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
