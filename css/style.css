@@ -958,34 +958,109 @@ body.abierto #animacion-Descripcion {
     height: 200px;
     margin: 0 auto 20px;
     border: 3px solid var(--color-principal);
-    border-radius: 50%; /* Opcional: forma circular o cuadrada */
+    border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 0 20px var(--color-principal); /* El brillo neón */
 }
 
-.especie-imagen {
-    width: 100%;
-    height: 100%;
+.foto-glitch {
+    width: 200px;
+    height: 200px;
+    border-radius: 49%;
     object-fit: cover;
+    position: relative;
+    filter: grayscale(100%) sepia(100%) hue-rotate(80deg) brightness(0.8) contrast(1.2);;
+    animation: glitch-anim 3s infinite;
+}
+
+.foto-glitch:hover {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+@keyframes glitch-anim {
+    0% {
+        transform: translate(0);
+        opacity: 1;
+        filter: contrast(1.4) brightness(0.9) hue-rotate(180deg);
+    }
+    2% {
+        /* Pequeño salto a la derecha y cambio de color */
+        transform: translate(-5px, 4px);
+        filter: contrast(2) sepia(1) hue-rotate(0deg); /* Flash rojo */
+    }
+    4% {
+        transform: translate(0);
+        filter: contrast(1.4) brightness(0.9) hue-rotate(180deg);
+    }
+    96% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    97% {
+        /* Efecto de apagado repentino */
+        transform: scale(1.02);
+        opacity: 0.8;
+    }
+    98% {
+        transform: scale(0.98);
+        opacity: 1;
+    }
 }
 
 /* El Sello "Clasificado" */
 .sello-clasificado {
     position: absolute;
     top: 10px;
-    right: 10px;
-    border: 3px solid rgb(106, 0, 0);
-    color: rgb(174, 0, 0);
+    right: -40px;
+    
+    /* COLORES Y BORDES */
+    border: 3px solid #ff0000; /* Rojo puro para que destaque */
+    color: #ff0000;
+    background-color: rgba(0, 0, 0, 0.7); /* Transparencia solo en el fondo negro */
+    
+    /* TIPOGRAFÍA */
     padding: 8px 15px;
     font-weight: 900;
     text-transform: uppercase;
-    transform: rotate(12deg);
-    opacity: 0.7;
     font-family: 'Courier New', monospace;
     letter-spacing: 2px;
+    
+    /* POSICIONAMIENTO */
+    transform: rotate(12deg);
     z-index: 1010;
-    pointer-events: none; /* Para que no estorbe al hacer click */
-    background-color: black;
+    pointer-events: none;
+    
+    /* ANIMACIÓN DE PULSO Y BRILLO */
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+    text-shadow: 0 0 2px rgba(255, 0, 0, 0.5);
+    animation: alerta-top-secret 2s infinite ease-in-out;
+}
+
+/* Efecto de borde doble sutil */
+.sello-clasificado::after {
+    content: '';
+    position: absolute;
+    top: 2px; left: 2px; right: 2px; bottom: 2px;
+    border: 1px dashed rgba(255, 0, 0, 0.5);
+}
+
+/* LA ANIMACIÓN */
+@keyframes alerta-top-secret {
+    0%, 100% {
+        /* Estado normal */
+        box-shadow: 0 0 5px rgba(255, 0, 0, 0.2), inset 0 0 5px rgba(255, 0, 0, 0.1);
+        text-shadow: 0 0 2px rgba(255, 0, 0, 0.3);
+        border-color: #bb0000;
+        color: #bb0000;
+    }
+    50% {
+        /* Estado "Brillante/Alerta" */
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), inset 0 0 10px rgba(255, 0, 0, 0.3);
+        text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6);
+        border-color: #ff3333;
+        color: #ff3333;
+    }
 }
 
 /* Contenedor de Signos Vitales */
