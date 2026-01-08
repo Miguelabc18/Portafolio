@@ -1,0 +1,1714 @@
+/* Corrección Global para evitar la barra de desplazamiento horizontal */
+html, body {
+    overflow-x: hidden;
+}
+
+/* ESTILOS DE LA VISTA INICIAl */
+
+/* ENCABEZADO */
+#header {
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url('../img/anime-9063542.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 55%;
+    transition: width 0.5s ease-in-out;
+}
+
+/* BARRA DE NAVEGACIÓN */
+#navegacion {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 5rem;
+    color: white;
+    position: fixed;
+    top: 0;
+    z-index: 2000;
+}
+/* Borde inferior degradado */
+#navegacion::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 80%;
+    height: .05rem;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 242, 0, 0.7) 30%,
+        rgba(255, 242, 0, 0.7) 70%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+/* ENLACES DE NAVEGACIÓN */
+.nav-link {
+    width: 15%;
+    position: relative;
+    padding-bottom: .2rem;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.nav-link:hover {
+    transform: scale(1.1);
+    color: rgb(158, 162, 255);
+}
+
+.nav-link::after {
+    content: '';
+    background-color: transparent;
+    height: 3px; 
+    position: absolute; 
+    bottom: 0;
+    left: 50%; 
+    width: 0; 
+    box-shadow: 0 0 0 transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
+    background-color: #ffffff;
+}
+
+.color-sobre-mi:hover::after {
+    box-shadow: 0 0 5px 1px rgb(35, 149, 0),        /* Núcleo brillante y más intenso */
+                0 0 10px 2px rgba(35, 149, 0, 0.7),  /* Halo extendido y más visible */
+                0 0 15px 3px rgba(35, 149, 0, 0.3);
+}
+
+.color-habilidades:hover::after {
+    box-shadow: 0 0 5px 1px rgb(216, 25, 143), 
+                0 0 10px 2px rgba(216, 25, 143, 0.7),
+                0 0 15px 3px rgba(216, 25, 143, 0.3);
+}
+
+.color-proyectos:hover::after {
+    box-shadow: 0 0 5px 1px rgb(181, 181, 181), 
+                0 0 10px 2px rgba(181, 181, 181, 0.7),
+                0 0 15px 3px rgba(181, 181, 181, 0.3);
+}
+
+.color-contacto:hover::after {
+    box-shadow: 0 0 5px 1px rgb(26, 101, 207), 
+                0 0 10px 2px rgba(26, 101, 207, 0.7),
+                0 0 15px 3px rgba(26, 101, 207, 0.3);
+}
+
+#logo {
+    /* Puedes dejar este estilo o eliminarlo si quieres que herede el color de la navbar */
+    background-color: transparent; 
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+
+/* SECCION INFORMATIVA DEL ENCABEZADO */
+#Descripcion {
+    color: white;
+    /* Ajustado: Usar height: 100% para ocupar el resto del header */
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    filter: brightness(1.5) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+/* Estilo importante para la ubicación del contenido cuando el Main está activo */
+body.abierto #Descripcion {
+    align-items: flex-start !important;
+}
+
+/* TITULO DEL ENCABEZADO */
+#titulo-header {
+    transition: transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+    filter: brightness(1.5) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+
+@keyframes rebote-titulo {
+    0% { 
+        transform: scale(1); /* Estado inicial */
+        opacity: 1;
+    } 
+    
+    80% { 
+        transform: scale(0.9) translateY(-10px); 
+        opacity: 0.8;
+    } 
+    
+    100% { 
+        transform: scale(0.85) translateY(0); /* Estado final reducido */
+        opacity: 1;
+    } 
+}
+
+/* LINEA SEPARADORA ENTRE TITULO Y DESCRIPCION */
+#linea-separadora {
+    width: 100%;
+    height: 2px;
+    position: relative;
+    overflow: hidden;
+    z-index: 2000;
+    transition: transform 0.6s ease-in-out; 
+}
+
+#linea-separadora::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background-image: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 217, 0, 0.765) 50%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 10% 100%; 
+    background-repeat: no-repeat;
+    animation: scan-line 5s linear infinite;
+}
+
+@keyframes scan-line {
+    0% {
+        background-position: -10% 0; /* Inicia fuera de la izquierda */
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        background-position: 110% 0; /* Sale por la derecha */
+        opacity: 0;
+    }
+}
+
+body.abierto #linea-separadora {
+    width: 100%; 
+    margin: 1rem 0 1rem 0; 
+}
+
+/* DESCRIPCION DEL ENCABEZADO */
+#descripcion-header {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    line-height: 1.4;
+    padding-top: .5rem;
+}
+
+.palabras-descripcion-header {
+    color: rgb(255, 105, 220);
+    text-shadow: 0 0 30px rgb(140, 0, 255), 0 0 30px rgb(140, 0, 255);
+    animation: flicker 3s infinite alternate ease-in-out;
+}
+
+body.abierto #descripcion-header {
+    font-size: 1rem; 
+    font-weight: 300;
+    transition: font-size 0.5s ease-in-out;
+    text-align: left !important; 
+    padding-left: 0;
+    text-shadow: 0 0 30px rgb(0, 0, 0), 0 0 30px rgb(0, 0, 0);
+}
+
+@keyframes flicker {
+    0%, 100% { 
+        opacity: 1; 
+        text-shadow: 0 0 15px rgb(140, 0, 255); /* Brillo base */
+    }
+    20%, 80% { 
+        opacity: 0.8; 
+    }
+    40% { 
+        opacity: 0.3; 
+        text-shadow: 0 0 30px rgb(140, 0, 255), 0 0 40px rgb(140, 0, 255); /* Brillo intenso */
+    }
+    60% { 
+        opacity: 0.9; 
+    }
+}
+
+/* CONTENEDOR DE TITULO Y DESCRIPCION DEL ENCABEZADO */
+#animacion-Descripcion {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body.abierto #animacion-Descripcion {
+    width: 40%;
+    animation: slide-in-titulo 0.8s ease-out forwards;
+    text-align: left !important;
+    font-size: 2rem;
+}
+
+@keyframes slide-in-titulo {
+    0% { 
+        transform: translateX(100px); 
+        opacity: 0;
+    } 
+    100% { 
+        transform: translateX(0); 
+        opacity: 1;
+    } 
+}
+
+#Descripcion.cerrando #animacion-Descripcion {
+    transition: width 0.1s ease-in-out 0.1s;
+    animation: slide-out-titulo 1s ease-out forwards;
+}
+
+@keyframes slide-out-titulo {
+    0% { 
+        transform: translateX(-100px); 
+        opacity: 0;
+    } 
+    40% { 
+        transform: translateX(-40px); 
+        opacity: 0;
+    }
+    100% { 
+        transform: translateX(none); 
+        opacity: 1;
+    } 
+}
+
+
+/* ESTILOS PARA EL CONTENEDOR PRINCIPAL DEL MAIN */
+#main-wrapper {
+    position: fixed;
+    top: 5rem;
+    right: 0;
+    bottom: 0;
+    z-index: 1500;
+    width: 50%; 
+    height: calc(100vh - 5rem);
+    background-color: rgba(0, 0, 0, 0.6); 
+    box-shadow: -10px 0 15px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+    display: flex;
+}
+
+/* Estilo para cuando la ventana está ABIERTA */
+#main-wrapper.abierto {
+    transform: translateX(0); 
+}
+
+/* ESTILOS PARA EL BOTÓN DESPLEGABLE */
+#btn-desplegar-main {
+    position: absolute; 
+    top: 50%;
+    left: 0;
+    z-index: 1002;
+    width: 3.5rem; 
+    height: 3.5rem;
+    padding: 0;
+    transform: translateX(-150%) translateY(-50%);
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: transparent;
+    overflow: visible !important;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out; 
+}
+/* Estilos Hover del Botón (Intensificación) */
+#btn-desplegar-main:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 0 12px rgba(255, 255, 255, 1), /* Más brillante */
+        0 0 25px rgba(135, 206, 250, 0.7); /* Halo más grande */
+}
+/* Contenedor del SVG (originalmente para el latido) */
+#icon-desplegar-main { 
+    width: 2.5rem;
+    /* La propiedad fill aquí no es necesaria si se define en el SVG */
+    /* fill: rgba(248, 207, 0, 0.85); */ 
+    animation: latido 2s ease-in-out infinite;
+}
+/* Estilos de la Estrella (SVG) */
+#btn-desplegar-main svg {
+    fill: #ffffff; /* Color de la estrella (blanco) */
+    
+    /* Brillo de la estrella en sí */
+    filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    
+    transition: all 0.3s ease-in-out;
+}
+/* Estilos Hover del SVG (Intensificación) */
+#btn-desplegar-main:hover svg {
+    filter: drop-shadow(0 0 8px #fff) drop-shadow(0 0 15px rgba(255, 255, 255, 0.7));
+}
+
+/* CLASE DE ACTIVACIÓN DEL GIRO (Añadida/Quitada con JS) */
+#btn-desplegar-main.girando svg {
+    animation: giro-estrella 0.7s linear forwards; /* Giro constante */
+}
+/* Opcional: Giro Único */
+#btn-desplegar-main.girando-una-vez svg {
+    animation: giro-estrella 0.7s linear forwards;
+}
+
+#btn-desplegar-main::before {
+    content: '';
+    
+    /* Posicionamiento y tamaño */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    
+    /* Estilo del pulso */
+    border: 3px solid white; /* Color del borde de la onda */
+    background: transparent;
+    
+    /* Animación */
+    animation: onda 2s ease-out infinite; 
+    
+    z-index: -1; 
+}
+
+@keyframes giro-estrella {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes latido {
+    0% {
+        transform: scale(1); /* Tamaño normal */
+    }
+    50% {
+        transform: scale(1.2); /* Crece 15% */
+    }
+    100% {
+        transform: scale(1); /* Vuelve al tamaño normal */
+    }
+}
+
+@keyframes onda {
+    0%, 49% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(2.2);
+        opacity: 0;
+    }
+}
+
+
+/* El contenido real para que no se sobreponga al botón */
+#contenido {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; /* Permite el scroll solo en el contenido si es largo */
+    position: relative;
+}
+
+#contenedor-secciones {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#contenedor-secciones:has(#mapa-timeline) {
+    justify-content: center;
+}
+
+#contenedor-secciones:has(.ficha-especie-container) {
+    justify-content: flex-start;
+}
+
+
+.boton-volver {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--color-principal);
+    color: var(--color-principal);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    box-shadow: 0 0 10px rgba(var(--color-principal-rgb), 0.3);
+    
+    /* Transición solo para el color y fondo, NO para la transformación */
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+    
+    /* Estado inicial invisible */
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Estado visible (manejado por JS) */
+.boton-volver.visible {
+    opacity: 1;
+    pointer-events: auto; /* Activo cuando está visible */
+}
+
+.boton-volver .icon-svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.boton-volver:hover .icon-svg {
+    /* Si apunta a la derecha originalmente, 180deg lo hará apuntar a la izquierda */
+    transform: rotate(180deg); 
+}
+
+.boton-volver:hover {
+    background: var(--color-principal);
+    color: #000;
+    box-shadow: 0 0 20px var(--color-principal);
+}
+
+/* Tooltip opcional que aparece al poner el mouse */
+.tooltip-boton {
+    position: absolute;
+    left: 60px;
+    background: var(--color-principal);
+    color: #000;
+    padding: 5px 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.boton-volver:hover .tooltip-boton {
+    opacity: 1;
+}
+
+/* Estilos del tooltip */
+
+/* --- CONFIGURACIÓN BASE DEL TOOLTIP --- */
+.mapa-popup {
+    position: absolute;
+    z-index: 5000;
+    width: 12rem; /* Un poco más ancho para que respire */
+    height: auto; /* Altura automática según contenido */
+    min-height: 8rem;
+    padding: 15px;
+    pointer-events: none;
+    
+    /* Variables locales para este componente */
+    --color-borde: var(--color-principal); 
+    --bg-tech: rgba(10, 15, 30, 0.85); /* Muy oscuro pero transparente */
+
+    /* EFECTO CRISTAL Y FORMA TÉCNICA */
+    background: var(--bg-tech);
+    backdrop-filter: blur(4px); /* Difumina el mapa detrás */
+    
+    /* Recorte "Sci-Fi" en la esquina inferior derecha */
+    clip-path: polygon(
+        0 0, 
+        100% 0, 
+        100% 85%, 
+        85% 100%, 
+        0 100%
+    );
+
+    /* Borde técnico (solo izquierda y arriba para estilo asimétrico) */
+    border-left: 3px solid var(--color-borde);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Sombra de neón fuerte */
+    box-shadow: 0 0 15px rgba(var(--color-principal-rgb), 0.3),
+                inset 0 0 20px rgba(var(--color-principal-rgb), 0.1);
+
+    /* Animación de entrada */
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: bottom center;
+}
+
+/* --- ESTADOS --- */
+.mapa-popup.oculto {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9); /* Efecto de "apagado" */
+}
+
+.mapa-popup.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1); /* Efecto de "encendido" */
+}
+
+/* --- DECORACIONES INTERNAS (Pseudo-elementos) --- */
+
+/* 1. Línea de escaneo (Scanner) */
+.mapa-popup::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, transparent, var(--color-borde), transparent);
+    opacity: 0.5;
+    animation: scan-line 2s linear infinite;
+    pointer-events: none;
+}
+
+/* 2. Esquina decorativa (Bracket tecnológico) */
+.mapa-popup::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid var(--color-borde);
+    border-right: 2px solid var(--color-borde);
+    opacity: 0.8;
+}
+
+/* --- TEXTOS --- */
+.popup-titulo {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--color-principal);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+    text-shadow: 0 0 5px var(--color-principal);
+}
+
+.popup-descripcion {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    color: #cfcfcf;
+    line-height: 1.4;
+}
+
+/* Data decorativa extra (simulada) */
+.popup-descripcion::after {
+    content: 'ANALYZING...';
+    display: block;
+    font-size: 0.6rem;
+    color: var(--color-principal);
+    margin-top: 10px;
+    opacity: 0.7;
+    animation: parpadeo-texto 1s infinite;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes scan-line {
+    0% { top: 0%; opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { top: 100%; opacity: 0; }
+}
+
+@keyframes parpadeo-texto {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 0.3; }
+}
+
+#mapa-timeline {
+    position: relative;
+    /* Define la altura del mapa para que sea visible en la ventana */
+    height: 80vh; 
+    width: 95%; 
+    margin: 0 auto;
+    border-radius: 2%;
+    overflow: hidden;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    /* 2. Propiedades del SVG */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('../img/Mapa.svg');
+    
+    background-repeat: no-repeat; 
+    
+    /* CLAVE: Ajustar el SVG al contenedor para que las coordenadas calcualdas funcionen */
+    background-size: 100% 100%; /* Estira el SVG para que cubra exactamente el 100% del ancho y alto del contenedor #mapa-timeline */
+    
+    background-position: center center;
+}
+
+#mapa-timeline::after {
+    content: '';
+    position: absolute;
+    
+    /* Hacemos el pseudo-elemento más grande para que pueda cubrir las esquinas */
+    width: 200%; 
+    height: 200%;
+    
+    /* El brillo estará justo en el borde del pseudo-elemento */
+    background: 
+        radial-gradient(
+            circle at center, 
+            rgba(255, 255, 255, 0.83) 0%, 
+            rgba(255, 255, 255, 0) 2%
+        );
+    
+    /* Enmascaramos el fondo para que solo se vea el borde */
+    /* Crea un borde de luz blanca de 2px de grosor */
+    mask: 
+        repeating-linear-gradient(
+            transparent, 
+            transparent 1px, 
+            #000 1px, 
+            #000 100%
+        );
+    
+    /* Posición inicial (la esquina superior izquierda del pseudo-elemento) */
+    top: -100%;
+    left: -100%;
+    
+    /* Aplicamos la nueva animación */
+    animation: brillo-recorrido 30s linear infinite;
+}
+
+@keyframes brillo-recorrido {
+    /* 0% (Arriba Izquierda) */
+    0% {
+        /* Inicia fuera del mapa, arriba a la izquierda */
+        transform: translate(0%, 0%); 
+    }
+    
+    /* 25% (Arriba Derecha) */
+    25% {
+        /* Se mueve a la derecha (eje X) */
+        transform: translate(50%, 0%);
+    }
+    
+    /* 50% (Abajo Derecha) */
+    50% {
+        /* Se mueve hacia abajo (eje Y) */
+        transform: translate(50%, 50%);
+    }
+    
+    /* 75% (Abajo Izquierda) */
+    75% {
+        /* Se mueve a la izquierda (eje X) */
+        transform: translate(0%, 50%);
+    }
+    
+    /* 100% (De vuelta a Arriba Izquierda) */
+    100% {
+        /* Vuelve arriba (eje Y) para completar el ciclo */
+        transform: translate(0%, 0%);
+    }
+}
+
+
+.punto-mapa {
+    position: absolute; 
+    width: 18%; 
+    text-align: center;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50%; 
+    
+    /* Asegúrate de que el contenido se centre */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+/* Ajuste del icono para que se vea más grande */
+.punto-icono {
+    width: 4rem; 
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 2rem; /* Icono más grande para destacar */
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente/oscuro */
+    transition: all 0.3s ease-in-out; /* Suavizar el hover */
+}
+
+.punto-icono svg {
+    width: 60%;  /* Ejemplo: Ocupa el 70% del ancho del círculo de 4rem */
+    height: 60%;
+
+    /* Color del relleno del icono */
+    fill: #ffffff; 
+    
+    /* Resplandor usando el filtro de sombra (más fácil de usar en SVGs) */
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8))
+            drop-shadow(0 0 10px rgba(0, 150, 255, 0.5)); 
+    
+    /* El mismo color de resplandor de tu box-shadow */
+    transition: filter 0.3s ease-in-out;
+}
+
+.punto-icono:hover {
+    background-color: rgba(0, 0, 0, 0.6); 
+    transform: scale(1.05); /* Mantener el pulso */
+}
+
+/* Ejemplo: Intensificar Sobre Mí */
+#p-sobre-mi .punto-icono:hover {
+    /* Toma los valores originales y duplica/triplica los px para intensificar */
+    box-shadow: 
+        0 0 20px rgb(35, 149, 0), /* Más fuerte */
+        0 0 40px rgba(35, 149, 0, 0.5), /* Más halo */
+        0 0 60px rgba(255, 255, 255, 0.4); /* Halo exterior del color del punto */
+    
+    /* Agregamos una sombra extra para el efecto de "nebulosa" */
+    filter: brightness(1.2); /* Aumenta el brillo general del color */
+}
+
+#p-sobre-mi .punto-icono {
+    box-shadow: 
+        0 0 10px rgb(35, 149, 0),
+        0 0 20px rgba(35, 149, 0, 0.25), 
+        0 0 30px rgba(70, 130, 180, 0.8);
+}
+
+#p-habilidades .punto-icono {
+    background-color: rgba(0, 0, 0, 0.6); /* Un poco más opaco */
+    /* Aumentar la intensidad y el tamaño del resplandor */
+    box-shadow: 
+        0 0 15px rgb(216, 25, 143), /* Centro verde */
+        0 0 30px rgba(216, 25, 143, 0.25), 
+        0 0 50px rgba(70, 130, 180, 0.8); /* Halo azul más fuerte */
+}
+
+#p-habilidades .punto-icono:hover {
+    /* Toma los valores originales y duplica/triplica los px para intensificar */
+    box-shadow: 
+        0 0 20px rgb(216, 25, 143), /* Más fuerte */
+        0 0 40px rgba(216, 25, 143, 0.5), /* Más halo */
+        0 0 60px rgba(255, 255, 255, 0.4); /* Halo exterior del color del punto */
+    
+    /* Agregamos una sombra extra para el efecto de "nebulosa" */
+    filter: brightness(1.2); /* Aumenta el brillo general del color */
+}
+
+
+#p-proyectos .punto-icono {
+    background-color: rgba(0, 0, 0, 0.6); /* Un poco más opaco */
+    /* Aumentar la intensidad y el tamaño del resplandor */
+    box-shadow:
+        0 0 15px rgb(181, 181, 181), /* Centro verde */
+        0 0 30px rgba(181, 181, 181, 0.25), 
+        0 0 50px rgba(70, 130, 180, 0.8); /* Halo azul más fuerte */
+}
+
+#p-proyectos .punto-icono:hover {
+    /* Toma los valores originales y duplica/triplica los px para intensificar */
+    box-shadow: 
+        0 0 20px rgb(181, 181, 181), /* Más fuerte */
+        0 0 40px rgba(181, 181, 181, 0.5), /* Más halo */
+        0 0 60px rgba(255, 255, 255, 0.4); /* Halo exterior del color del punto */
+    
+    /* Agregamos una sombra extra para el efecto de "nebulosa" */
+    filter: brightness(1.2); /* Aumenta el brillo general del color */
+}
+
+#p-contacto .punto-icono {
+    background-color: rgba(0, 0, 0, 0.6); /* Un poco más opaco */
+    /* Aumentar la intensidad y el tamaño del resplandor */
+    box-shadow:
+        0 0 15px rgb(26, 101, 207), /* Centro verde */
+        0 0 30px rgba(26, 101, 207, 0.25), 
+        0 0 50px rgba(70, 130, 180, 0.8); /* Halo azul más fuerte */
+}
+
+#p-contacto .punto-icono:hover {
+    /* Toma los valores originales y duplica/triplica los px para intensificar */
+    box-shadow: 
+        0 0 20px rgb(26, 101, 207), /* Más fuerte */
+        0 0 40px rgba(26, 101, 207, 0.5), /* Más halo */
+        0 0 60px rgba(255, 255, 255, 0.4); /* Halo exterior del color del punto */
+    
+    /* Agregamos una sombra extra para el efecto de "nebulosa" */
+    filter: brightness(1.2); /* Aumenta el brillo general del color */
+}
+
+#p-estrella .punto-icono {
+    background-color: rgba(0, 0, 0, 0.6); /* Un poco más opaco */
+    /* Aumentar la intensidad y el tamaño del resplandor */
+    box-shadow:
+        0 0 15px #ffd700, /* Centro verde */
+        0 0 30px #ffd90043, 
+        0 0 50px rgba(70, 130, 180, 0.8); /* Halo azul más fuerte */
+}
+
+#p-estrella .punto-icono:hover {
+    /* Toma los valores originales y duplica/triplica los px para intensificar */
+    box-shadow: 
+        0 0 20px #ffd700, /* Más fuerte */
+        0 0 40px #ffd90043, /* Más halo */
+        0 0 60px rgba(255, 255, 255, 0.4); /* Halo exterior del color del punto */
+    
+    /* Agregamos una sombra extra para el efecto de "nebulosa" */
+    filter: brightness(1.2); /* Aumenta el brillo general del color */
+}
+
+
+/* Estilo del título */
+.punto-titulo {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 5px #fff; 
+    margin: 0;
+    line-height: 1.2;
+}
+
+
+/* 1. Sobre Mí: Arriba Izquierda */
+#p-sobre-mi {
+    top: 7%;
+    left: 14%;
+}
+
+/* 2. Habilidades: Abajo Derecha */
+#p-habilidades {
+    top: 26%;
+    right: 15%; 
+}
+
+/* 3. Proyectos: Izquierda, más abajo */
+#p-proyectos {
+    top: 44%; 
+    left: 19%; /* No simétrico con el primero */
+}
+
+/* 4. Contacto: Abajo, hacia la derecha */
+#p-contacto {
+    top: 60%;
+    right: 20%;
+}
+
+/* 5. El Tesoro: Abajo Centro */
+#p-estrella {
+    top: 82%;
+    left: 41%;
+    /* Animación sutil solo para el tesoro (opcional) */
+    animation: pulso-tesoro 3s infinite alternate ease-in-out;
+}
+
+@keyframes pulso-tesoro {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.03); }
+}
+
+
+#Sobre_mi {
+    color: white;
+}
+
+
+.ficha-especie-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap; /* Para que funcione bien en móviles */
+    gap: 40px;
+    padding: 30px;
+    
+    /* Fondo translúcido oscuro, si lo deseas */
+    background-color: rgba(0, 0, 0, 0.4); 
+    border: 1px solid var(--color-principal);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), inset 0 0 10px var(--color-principal);
+}
+
+.ficha-columna-izquierda, .ficha-columna-derecha {
+    /* Ocupar la mitad del espacio en escritorio */
+    flex: 1 1 45%; 
+    min-width: 300px; /* Ancho mínimo para mantener la legibilidad */
+}
+
+/* --- ESTILO DE IMAGEN (El Marco Radioactivo) --- */
+.especie-imagen-marco {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    border: 3px solid var(--color-principal);
+    border-radius: 50%; /* Opcional: forma circular o cuadrada */
+    overflow: hidden;
+    box-shadow: 0 0 20px var(--color-principal); /* El brillo neón */
+}
+
+.especie-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* El Sello "Clasificado" */
+.sello-clasificado {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 3px solid rgb(106, 0, 0);
+    color: rgb(174, 0, 0);
+    padding: 8px 15px;
+    font-weight: 900;
+    text-transform: uppercase;
+    transform: rotate(12deg);
+    opacity: 0.7;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+    z-index: 1010;
+    pointer-events: none; /* Para que no estorbe al hacer click */
+    background-color: black;
+}
+
+/* Contenedor de Signos Vitales */
+.contenedor-vitales {
+    width: 200px;
+    margin: 0 auto;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--color-principal);
+}
+
+.vitales-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.barra-vital-fondo {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid var(--color-principal);
+}
+
+.barra-vital-progreso {
+    width: 98%;
+    height: 100%;
+    background: var(--color-principal);
+    box-shadow: 0 0 10px var(--color-principal);
+    animation: pulso-vital 2s infinite ease-in-out;
+}
+
+/* Metadatos de la Especie */
+.metadatos-especie {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.dato-item {
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+.dato-item span {
+    color: var(--color-principal);
+    font-weight: bold;
+}
+
+/* Animación de la barra */
+@keyframes pulso-vital {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* --- ESTILOS DE TEXTO Y DETALLES (Usando tu neón verde) --- */
+
+/* Contenedor principal de la sección */
+.grid-habilidades {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+/* Cada "Módulo" o bloque */
+.modulo-diagnostico {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--color-principal);
+    padding: 20px;
+    position: relative;
+    box-shadow: inset 0 0 15px rgba(var(--color-principal-rgb), 0.2);
+    border-radius: 4px;
+}
+
+.header-modulo {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--color-principal);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.subtitulo-modulo {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Los "Chips" de habilidades */
+.skill-chip {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 5px 12px;
+    margin: 4px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.skill-chip:hover {
+    border-color: var(--color-principal);
+    background: rgba(var(--color-principal-rgb), 0.1);
+    transform: translateY(-2px);
+}
+
+/* El punto de luz parpadeante */
+.pulso-online {
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-principal);
+    border-radius: 50%;
+    margin-left: 8px;
+    display: inline-block;
+    box-shadow: 0 0 8px var(--color-principal);
+    animation: parpadeo-led 1.5s infinite;
+}
+
+.footer-modulo {
+    margin-top: 20px;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: right;
+    letter-spacing: 2px;
+}
+
+@keyframes parpadeo-led {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+}
+
+
+
+/* Reutilizar el título con brillo dinámico */
+.titulo-seccion {
+    margin: 0 auto;
+    width: 70%;
+    font-family: 'Share Tech Mono', monospace; /* Una fuente tipo sistema */
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-top: 30px;
+    
+    /* El color dinámico */
+    color: WHITE;
+    
+    /* Efecto de capas de brillo (Glow) */
+    text-shadow: 
+        0 0 5px var(--color-principal),
+        0 0 10px var(--color-principal),
+        0 0 20px var(--color-principal);
+        
+    /* Añadimos una línea decorativa que también cambie de color */
+    animation: flicker-titulo 5s infinite;
+}
+
+
+@keyframes flicker-titulo {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: 
+            0 0 5px var(--color-principal),
+            0 0 10px var(--color-principal);
+        opacity: 1;
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+        opacity: 0.7;
+    }
+}
+
+
+/* Reutilizar los subtítulos de neón */
+.subtitulo {
+    color: white;
+    text-shadow: 0 0 5px white;
+}
+
+.subtitulo-neón {
+    color: var(--color-principal);
+    text-shadow: 0 0 5px var(--color-principal);
+    border-bottom: 1px dashed var(--color-principal);
+    padding-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.neón-acento {
+    color: var(--color-principal); /* Rosa Fucsia dinámico */
+    font-weight: bold; 
+    
+    /* Efecto de brillo intenso */
+    text-shadow: 
+        0 0 5px var(--color-principal), 
+        0 0 10px var(--color-principal);
+    
+    margin-right: 10px; /* Separar el número del resto del texto */
+}
+
+/* --- CHIPS TECNOLÓGICOS --- */
+.proyecto-tecnologias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.chip-tecnologia {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--color-principal);
+    background: rgba(var(--color-principal-rgb), 0.1); /* Fondo muy sutil del color de la sección */
+    border: 1px solid var(--color-principal);
+    padding: 3px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 5px rgba(var(--color-principal-rgb), 0.2);
+}
+
+/* --- INDICADOR DE STATUS --- */
+.indicador-status-contenedor {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
+
+.punto-led {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Estados del LED */
+.led-activo { background: #00ff00; box-shadow: 0 0 8px #00ff00; }
+.led-pausa { background: #ffcc00; box-shadow: 0 0 8px #ffcc00; }
+.led-terminado { background: #00d9ff; box-shadow: 0 0 8px #00d9ff; }
+
+.texto-status-tecnico {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Ajuste a la línea de escaneo en tu estructura */
+.proyecto-portada-mini {
+    position: relative; /* Para que la línea no se salga */
+}
+
+.escaneo-linea {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: var(--color-principal);
+    box-shadow: 0 0 10px var(--color-principal);
+    animation: escaneo-mini 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes escaneo-mini {
+    0% { top: 0; opacity: 0; }
+    50% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+
+
+/* --- CONTENEDOR PRINCIPAL: Lista de Dossiers --- */
+.tarjetas-proyectos-grid-horizontal {
+    /* Ya no es grid, es una lista de elementos que ocupan todo el ancho */
+    display: flex;
+    flex-direction: column; /* Apilar las tarjetas horizontalmente */
+    gap: 25px; /* Espacio entre cada dossier/tarjeta */
+    padding: 20px 0;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- ESTILO DE LA TARJETA HORIZONTAL COMPLETA --- */
+.tarjeta-proyecto-horizontal {
+    display: flex; /* Habilitar flexbox para alinear imagen y texto */
+    align-items: flex-start;
+    width: 90%;
+    
+    /* Mismo estilo de terminal de datos congelada (Gris Neón) */
+    background-color: rgba(0, 0, 0, 0.4); 
+    border: 1px solid var(--color-principal); 
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5), inset 0 0 5px var(--color-principal);
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+.tarjeta-proyecto-horizontal:hover {
+    box-shadow: 0 0 15px var(--color-principal), 0 0 5px var(--color-principal); 
+    background-color: rgba(0, 0, 0, 0.6); /* Oscurecer un poco al hacer hover */
+}
+
+
+/* --- 1. ÁREA DE LA IMAGEN (PORTADA PEQUEÑA) --- */
+.proyecto-portada-mini {
+    flex-shrink: 0; /* Evita que la imagen se achique */
+    width: 40%; /* Ancho fijo para la imagen (más pequeña) */
+    height: 100%; /* Altura fija */
+    overflow: hidden;
+    border-radius: 4px;
+    margin-right: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.proyecto-portada-img {
+    width: 100%;
+    height: 90%;
+    object-fit: cover;
+}
+
+
+/* --- 2. SECCIÓN DE INFORMACIÓN (TEXTOS) --- */
+.proyecto-info-horizontal {
+    flex-grow: 1; /* Ocupa el espacio restante */
+}
+
+.proyecto-titulo  {
+    font-size: 1.2em; /* Título ligeramente más pequeño */
+    margin-top: 0;
+}
+
+.proyecto-descripcion {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    color: white;
+}
+
+/* --- ENLACES Y CHIPS --- */
+
+/* Los chips y los enlaces deben ser menos prominentes aquí */
+.proyecto-tecnologias {
+    margin-bottom: 10px;
+}
+
+.proyecto-enlaces a {
+    margin-right: 15px;
+    /* Reutiliza .enlace-neón de la sección anterior */
+}
+
+/* --- MEDIA QUERIES (PARA MÓVILES) --- */
+@media (max-width: 600px) {
+    .tarjeta-proyecto-horizontal {
+        flex-direction: column; /* Apilar imagen y texto en móviles */
+        align-items: center;
+        text-align: center;
+    }
+    
+    .proyecto-portada-mini {
+        width: 100%; /* Imagen al 100% en móvil */
+        height: 150px;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .proyecto-info-horizontal {
+        padding-top: 10px;
+    }
+}
+
+/* ======================================= */
+/* ESTILOS MODAL GALERÍA (AZUL NEÓN) */
+/* ======================================= */
+
+/* --- Contenedor Principal --- */
+.modal-galeria {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; /* Asegurar que esté por encima de todo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-galeria.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-galeria.oculto {
+    display: none; /* Para asegurar que no intercepte clics cuando está oculto */
+}
+
+/* --- Overlay (Fondo oscuro) --- */
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Oscuro profundo */
+    backdrop-filter: blur(5px);
+}
+
+/* --- Contenido del Modal (La 'caja' de la galería) --- */
+.modal-contenido-wrapper {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 900px; /* Tamaño máximo para escritorio */
+    z-index: 1001; 
+    
+    /* Borde y sombra Neón (Usaremos var(--color-principal), que será Azul Neón si la sección Contacto es la activa, si no lo forzamos) */
+    /* Para el modal, podemos usar un color fijo o el color de la sección de proyectos (Gris Neón) */
+    border: 1px solid #bcc0c9; /* Azul Neón Fijo para interfaz */
+    box-shadow: 0 0 20px #bcc0c9; 
+    
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.modal-galeria.visible .modal-contenido-wrapper {
+    transform: scale(1);
+}
+
+/* --- Botón Cerrar --- */
+.modal-cerrar {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #bcc0c9;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal-cerrar:hover {
+    color: white;
+}
+
+/* --- Carrusel/Galería (Contenido Interno) --- */
+.galeria-carrusel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px; /* O el ancho que prefieras */
+    margin: auto;
+}
+
+#carrusel-imagenes {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+}
+
+#carrusel-imagenes img {
+    flex: 0 0 100%;
+    width: 100%; /* Cada imagen ocupa el 100% del ancho del carrusel */
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.sin-transicion {
+    transition: none !important;
+}
+
+/* --- ESTILO DE LOS CONTROLES (Flechas Superpuestas) --- */
+.carrusel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #9ca6c0af;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1002;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+}
+
+#carrusel-prev {
+    left: 10px;
+    border-radius: 0 5px 5px 0;
+}
+
+#carrusel-next {
+    right: 10px;
+    border-radius: 5px 0 0 5px;
+}
+
+.carrusel-control:hover {
+    background: #757c8f;
+    color: black;
+}
+
+
+
+/* Sección Contacto */
+.panel-comunicaciones {
+    padding: 30px;
+    background: linear-gradient(135deg, 
+        rgba(26, 101, 207, 0.4), 
+        rgba(106, 13, 173, 0.4), 
+        rgba(0, 201, 167, 0.4));
+    background-size: 400% 400%; /* Tamaño grande para que el movimiento sea suave */
+    animation: cambioAgua 15s ease infinite;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+}
+
+@keyframes cambioAgua {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.panel-comunicaciones .manifiesto-texto {
+    color: #ffffff; /* Texto blanco */
+    margin-bottom: 40px;
+}
+
+.tarjeta-enlace {
+    display: flex;
+    align-items: center;
+    padding: 10px 25px;
+    margin: 15px 0;
+    text-decoration: none;
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.icono-enlace svg {
+    width: 40px;      /* Tamaño del icono */
+    height: 40px;     /* Tamaño del icono */
+    fill: var(--color-principal);    /* Color original de WhatsApp (puedes usar var(--color-principal)) */
+    display: block;
+    margin-right: 10px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.texto-enlace {
+    font-family: 'Share Tech Mono', monospace; /* Si usas alguna fuente mono */
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.tarjeta-enlace:hover {
+    background: rgba(26, 101, 207, 0.2);
+    transform: translateX(10px);
+}
+
+.tarjeta-enlace:hover svg {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px var(--color-principal));
+}
+
+/* El efecto de "onda de sonar" */
+.onda-comunicacion {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+}
+
+.tarjeta-enlace:hover .onda-comunicacion {
+    animation: sonar 1.5s infinite;
+}
+
+@keyframes sonar {
+    100% { transform: translateX(100%); }
+}
+
+
+
+.contenedor-nucleo {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    color: white; /* Texto general en blanco */
+}
+
+.descripcion-nucleo {
+    color: #e0e0e0; /* Un blanco sutilmente grisáceo para no cansar */
+    line-height: 1.6;
+    margin-bottom: 30px;
+    border-left: 3px solid #ffd700;
+    padding-left: 15px;
+}
+
+.area-descarga {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    background: rgba(255, 140, 0, 0.05); /* Un toque de calor en el fondo */
+    border-radius: 8px;
+    
+    box-shadow: inset 0 0 50px rgba(255, 69, 0, 0.1);
+    animation: pulsoCalor 4s ease-in-out infinite;
+}
+
+@keyframes pulsoCalor {
+    0%, 100% { box-shadow: inset 0 0 30px rgba(255, 69, 0, 0.1); }
+    50% { box-shadow: inset 0 0 60px rgba(255, 69, 0, 0.2); }
+}
+
+.neón-oro {
+    color: #ffd700;
+    text-shadow: 0 0 10px #ffd700, 0 0 20px #ff8c00;
+}
+
+.alerta-calor {
+    background: #ff0000;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+    animation: parpadeo-emergencia 1s steps(2) infinite;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+}
+
+.boton-extracccion {
+    display: inline-block;
+    padding: 20px 40px;
+    background: #000;
+    color: #ffffff;
+    border: 2px solid #ffd700;
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+    box-shadow: 0 0 15px #ffd700;
+    transition: all 0.3s;
+    z-index: 1;
+}
+
+.boton-extracccion:hover {
+    background: #ffd700;
+    color: black;
+    box-shadow: 0 0 40px #ffd700;
+    transform: scale(1.1) rotate(-1deg);
+}
+
+/* Efecto de llamas flameantes alrededor del botón */
+.boton-extracccion::after {
+    content: '';
+    position: absolute;
+    top: -5px; left: -5px; right: -5px; bottom: -5px;
+    background: linear-gradient(45deg, #ff4500, #ff8c00, #ffd700, #ff4500);
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0.7;
+    animation: llamasNucleo 3s linear infinite;
+    border-radius: 4px;
+}
+
+@keyframes llamasNucleo {
+    0% { background-position: 0%; }
+    100% { background-position: 400%; }
+}
+
+@keyframes parpadeo-emergencia {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+
+/* Responsividad */
+@media (max-width: 991px) {
+    #main-wrapper {
+        width: 100% !important;
+        /* El 85vh asegura que el Header siempre sea visible arriba (15vh libres) */
+        height: 85vh !important; 
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        transform: translateY(100%); /* Escondido abajo */
+        transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        z-index: 1050; /* Por debajo del header si este tiene 1100 */
+        border-radius: 25px 25px 0 0;
+        border-top: 3px solid var(--color-principal);
+    }
+
+    /* El botón de cerrar en móvil debe ser más grande y estar arriba a la derecha del panel */
+    #btn-cerrar-wrapper {
+        position: sticky; /* Se queda arriba mientras haces scroll en el panel */
+        top: 15px;
+        right: 20px;
+        float: right;
+        font-size: 2rem;
+        z-index: 1060;
+        background: rgba(0,0,0,0.5);
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
