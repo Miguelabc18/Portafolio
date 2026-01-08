@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Controla la clase 'abierto' en el wrapper principal y el body
     function toggleMainWrapper(isOpen) {
-        // Asegúrate de que SÓLO maneje las clases 'abierto' y la animación de giro.
         if (isOpen) {
             descripcion.removeEventListener('animationend', handleAnimationEnd);
             descripcion.classList.remove('cerrando'); 
@@ -87,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // -----------------------------------------------------------------
-    // 🔥 FUNCIÓN CENTRAL DE NAVEGACIÓN (IR A UN PLANETA)
+    // FUNCIÓN CENTRAL DE NAVEGACIÓN (IR A UN PLANETA)
     // -----------------------------------------------------------------
     function navegarASeccion(marcador) {
         const targetId = marcador.getAttribute('data-target');
@@ -248,12 +247,11 @@ document.addEventListener('DOMContentLoaded', function() {
             mapaPopup.style.setProperty('--color-halo', datos.colorHalo);
         }
 
-        // 2. OBTENER DIMENSIONES REALES (Esta es la corrección clave)
-        // El navegador ya redibujó el texto, así que ahora sabemos cuánto mide exactamente.
+        // 2. DIMENSIONES REALES
         const realWidth = mapaPopup.offsetWidth;
         const realHeight = mapaPopup.offsetHeight;
         
-        // Margen un poco más generoso para separar del planeta
+        // Margen para separar del planeta
         const MARGIN = 20; 
 
         // Dimensiones del planeta
@@ -344,14 +342,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-
     // Opcional: Si el mouse sale del pop-up, también se oculta
     mapaPopup.addEventListener('mouseleave', ocultarPopup);
 
 
-    // Ventana Modal para mostrar imágenes de los proyectos
 
+
+    // Ventana Modal para mostrar imágenes de los proyectos
     const projectModal = document.getElementById('project-modal');
     const modalCerrar = projectModal.querySelector('.modal-cerrar');
     const modalOverlay = projectModal.querySelector('.modal-overlay');

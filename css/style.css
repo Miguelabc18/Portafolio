@@ -579,7 +579,7 @@ body.abierto #animacion-Descripcion {
     height: 5px;
     background: linear-gradient(90deg, transparent, var(--color-borde), transparent);
     opacity: 0.5;
-    animation: scan-line 2s linear infinite;
+    animation: escaneo-linea 2s linear infinite;
     pointer-events: none;
 }
 
@@ -628,7 +628,7 @@ body.abierto #animacion-Descripcion {
 }
 
 /* --- ANIMACIONES --- */
-@keyframes scan-line {
+@keyframes escaneo-linea {
     0% { top: 0%; opacity: 0; }
     10% { opacity: 0.8; }
     90% { opacity: 0.8; }
@@ -1131,8 +1131,6 @@ body.abierto #animacion-Descripcion {
 
 /* Reutilizar el título con brillo dinámico */
 .titulo-seccion {
-    margin: 0 auto;
-    width: 70%;
     font-family: 'Share Tech Mono', monospace; /* Una fuente tipo sistema */
     font-size: 2rem;
     text-transform: uppercase;
