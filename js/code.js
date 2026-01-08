@@ -489,12 +489,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const datosGaleria = {
         'smg': [
-            '../img/SMG-1.png',
-            '../img/SMG-2.png',
-            '../img/SMG-3.png',
-            '../img/SMG-4.png',
-            '../img/SMG-5.png',
-            '../img/SMG-6.png'
+            'img/SMG-1.png',
+            'img/SMG-2.png',
+            'img/SMG-3.png',
+            'img/SMG-4.png',
+            'img/SMG-5.png',
+            'img/SMG-6.png'
         ]
     };
 
